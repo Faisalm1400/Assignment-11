@@ -4,6 +4,7 @@ import { GrUpdate } from "react-icons/gr";
 import { MdDelete } from "react-icons/md";
 import { AuthContext } from "../../context/AuthContextProvider";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 
 const MyMarathonList = () => {
@@ -17,7 +18,9 @@ const MyMarathonList = () => {
         if (!email) return;
 
         setLoading(false);
-        axios.get(`http://localhost:5000/myMarathons/?email=${email}`)
+        axios.get(`http://localhost:5000/myMarathons/?email=${email}`, {
+            withCredentials: true
+        })
             .then(res => {
                 setMarathons(res.data)
                 setLoading(false)
@@ -45,7 +48,19 @@ const MyMarathonList = () => {
 
         axios.put(`http://localhost:5000/marathons/${selectedMarathon._id}`, updatedData)
             .then(() => {
-                alert("Marathon updated successfully!");
+                toast.success('Marathon updated successfully!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+
+                // alert("Marathon updated successfully!");
+                
                 setShowEditModal(false);
             })
             .catch((error) => console.error("Error updating marathon:", error));
@@ -71,7 +86,7 @@ const MyMarathonList = () => {
                                 icon: "success"
                             });
 
-                             setMarathons(prevMarathons => prevMarathons.filter(m => m._id !== marathon._id));
+                            setMarathons(prevMarathons => prevMarathons.filter(m => m._id !== marathon._id));
                         }
                     })
                     .catch((error) => console.error("Error deleting marathon:", error));

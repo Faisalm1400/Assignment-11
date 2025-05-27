@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContextProvider'; import { FcGoogle } from "react-icons/fc";
+import {toast} from "react-toastify";
+import axios from 'axios';
 
 const Login = () => {
     const { userLogin, setUser, handleGoogleSignIn } = useContext(AuthContext);
@@ -15,35 +17,26 @@ const Login = () => {
 
         userLogin(email, password)
             .then(result => {
-                const user = result.user;
-                setUser(user);
+                setUser(result.user);
                 form.reset();
+                const user = { email: email }
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                    })
                 navigate(location?.state ? location.state : "/");
 
-
-                
-                // fetch(`https://crowdcube-server-lyart.vercel.app/users`, {
-                //     method: 'PATCH',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(loginInfo)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         // console.log('sign in info updated in db', data)
-                //     })
-                // toast.success('User logged in successfully', {
-                //     position: "top-center",
-                //     autoClose: 5000,
-                //     hideProgressBar: false,
-                //     closeOnClick: false,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                //     theme: "dark",
-                // });
-                alert('User logged in successfully')
+                toast.success('User logged in successfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                // alert('User logged in successfully')
                 // console.log(user)
             })
             .catch((error) => {
@@ -58,7 +51,7 @@ const Login = () => {
                     pauseOnHover: true,
                     draggable: true,
                     progress: undefined,
-                    theme: "dark",
+                    theme: "light",
                 });
                 // console.log(errorMessage)
             });
@@ -70,72 +63,40 @@ const Login = () => {
                 // console.log(result.user);
                 setUser(result.user);
                 navigate(location?.state ? location.state : "/");
+                const user = { email: result.user.email };
+                console.log(user)
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                    })
 
-                // Save or update user info in the database
-                // fetch('https://crowdcube-server-lyart.vercel.app/users', {
-                //     method: 'PUT',
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     },
-                //     body: JSON.stringify(googleInfo)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         if (data.upsertedId) {
-                //             toast.success('User logged in successfully', {
-                //                 position: "top-center",
-                //                 autoClose: 5000,
-                //                 hideProgressBar: false,
-                //                 closeOnClick: false,
-                //                 pauseOnHover: true,
-                //                 draggable: true,
-                //                 progress: undefined,
-                //                 theme: "dark",
-                //             });
-                //         }
-                //     })
-                //     .catch((error) => {
-                //         const errorMessage = error.message;
-
-                //         toast.error(`${errorMessage}`, {
-                //             position: "top-center",
-                //             autoClose: 5000,
-                //             hideProgressBar: false,
-                //             closeOnClick: true,
-                //             pauseOnHover: true,
-                //             draggable: true,
-                //             progress: undefined,
-                //             theme: "dark",
-                //         });
-                //     });
-
-                // toast.success('User logged in successfully', {
-                //     position: "top-center",
-                //     autoClose: 5000,
-                //     hideProgressBar: false,
-                //     closeOnClick: false,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                //     theme: "dark",
-                // });
-                alert('User logged in successfully')
+                toast.success('User logged in successfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                // alert('User logged in successfully')
             })
             .catch((error) => {
                 const errorMessage = error.message;
 
-                // toast.error(`${errorMessage}`, {
-                //     position: "top-center",
-                //     autoClose: 5000,
-                //     hideProgressBar: false,
-                //     closeOnClick: true,
-                //     pauseOnHover: true,
-                //     draggable: true,
-                //     progress: undefined,
-                //     theme: "dark",
-                // });
+                toast.error(`${errorMessage}`, {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
 
-                alert(errorMessage)
+                // alert(errorMessage)
                 setUser(null);
             })
     };

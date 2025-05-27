@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContextProvider";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
@@ -23,29 +25,29 @@ const Register = () => {
     
     
             if (!/(?=.*?[A-Z])/.test(password)) {
-                // Swal.fire({
-                //     icon: "error",
-                //     title: "Password should contain one  uppercase letter or more",
-                // });
+                Swal.fire({
+                    icon: "error",
+                    title: "Password should contain one  uppercase letter or more",
+                });
     
-                alert('Password should contain one  uppercase letter or more');
+                // alert('Password should contain one  uppercase letter or more');
                 return;
             }
     
             if (!/(?=.*[a-z])/.test(password)) {
-                // Swal.fire({
-                //     icon: "error",
-                //     title: "Password should contain one  lowercase letter or more",
-                // });
-                alert('Password should contain one  lowercase letter or more');
+                Swal.fire({
+                    icon: "error",
+                    title: "Password should contain one  lowercase letter or more",
+                });
+                // alert('Password should contain one  lowercase letter or more');
                 return;
             }
             if (!/(?=.{6,})/.test(password)) {
-                // Swal.fire({
-                //     icon: "error",
-                //     title: "Password should be 6 characters or longer",
-                // });
-                alert('Password should be 6 characters or longer');
+                Swal.fire({
+                    icon: "error",
+                    title: "Password should be 6 characters or longer",
+                });
+                // alert('Password should be 6 characters or longer');
                 return;
             }
     
@@ -56,47 +58,33 @@ const Register = () => {
                     form.reset();
                     navigate(location?.state ? location.state : "/");
     
-                    // save new user info to the database
-                    // fetch('https://crowdcube-server-lyart.vercel.app/users', {
-                    //     method: 'POST',
-                    //     headers: {
-                    //         'content-type': 'application/json'
-                    //     },
-                    //     body: JSON.stringify(newUser)
-                    // })
-                    //     .then(res => res.json())
-                    //     .then(data => {
-                    //         if (data.insertedId) {
-                    //             // alert('user created in db')
-                    //         }
-                    //     })
-                        alert('User created successfully')
-                    // toast.success('User created successfully', {
-                    //     position: "top-center",
-                    //     autoClose: 5000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: false,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: "dark",
-                    // });
+                        // alert('User created successfully')
+                    toast.success('User created successfully', {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 })
                 .catch((error) => {
                     const errorMessage = error.message;
 
-                    alert(errorMessage)
+                    // alert(errorMessage)
     
-                    // toast.error(`${errorMessage}`, {
-                    //     position: "top-center",
-                    //     autoClose: 5000,
-                    //     hideProgressBar: false,
-                    //     closeOnClick: true,
-                    //     pauseOnHover: true,
-                    //     draggable: true,
-                    //     progress: undefined,
-                    //     theme: "dark",
-                    // });
+                    toast.error(`${errorMessage}`, {
+                        position: "top-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 })
     
         }

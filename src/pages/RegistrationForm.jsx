@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContextProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 
 const RegistrationForm = () => {
@@ -32,12 +33,22 @@ const RegistrationForm = () => {
 
         axios.post("http://localhost:5000/registrations", registrationData)
             .then(() => {
-                alert("Registration Successful!");
-                // navigate("/dashboard/my-apply");
+                toast.success('Registration Successful!', {
+                    position: "top-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                // alert("Registration Successful!");
+                navigate("/dashboard/myApply");
             })
             .catch((error) => {
-                console.error("Error registering:", error);
-                alert("Registration failed. Please try again.");
+                // console.error("Error registering:", error);
+                // alert("Registration failed. Please try again.");
             });
     };
 

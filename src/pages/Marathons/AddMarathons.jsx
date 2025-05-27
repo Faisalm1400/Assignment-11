@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { AuthContext } from '../../context/AuthContextProvider';
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 const AddMarathons = () => {
     const [startRegDate, setStartRegDate] = useState(null);
@@ -33,15 +34,37 @@ const AddMarathons = () => {
         axios.post("http://localhost:5000/marathons", marathon)
             .then((response) => {
                 console.log("Marathon Added:", response.data);
-                alert("Marathon registered successfully!");
+                toast.success('Marathon registered successfully!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+
+                // alert("Marathon registered successfully!");
             })
             .catch((error) => {
-                console.error("Error adding marathon:", error);
-                alert("Failed to register the marathon. Please try again.");
+                // console.error("Error adding marathon:", error);
+                // alert("Failed to register the marathon. Please try again.");
             });
-        console.log("Marathon Data:", marathon);
+        // console.log("Marathon Data:", marathon);
 
-        alert("Marathon registered successfully!");
+        toast.success('Marathon registered successfully!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+
+        // alert("Marathon registered successfully!");
     }
 
     return (

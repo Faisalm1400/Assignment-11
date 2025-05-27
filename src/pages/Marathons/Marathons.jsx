@@ -11,7 +11,7 @@ const Marathons = () => {
             .then((response) => {
                 setMarathons(response.data);
             })
-            .catch((error) => console.error("Error fetching marathons:", error));
+            // .catch((error) => console.error("Error fetching marathons:", error));
     }, []);
 
     return (

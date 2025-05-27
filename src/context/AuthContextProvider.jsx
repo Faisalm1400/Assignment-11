@@ -30,14 +30,14 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            console.log('State captured', currentUser)
+            // console.log('State captured', currentUser)
 
             if (currentUser?.email) {
                 const user = { email: currentUser.email }
 
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {
-                        console.log('login token', res.data)
+                        // console.log('login token', res.data)
                         setLoading(false);
                     })
             }
@@ -46,7 +46,7 @@ const AuthContextProvider = ({ children }) => {
                     withCredentials: true
                 })
                     .then(res => {
-                        console.log('logout', res.data)
+                        // console.log('logout', res.data)
                         setLoading(false);
                     })
             }

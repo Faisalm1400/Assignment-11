@@ -33,7 +33,7 @@ const AddMarathons = () => {
 
         axios.post("http://localhost:5000/marathons", marathon)
             .then((response) => {
-                console.log("Marathon Added:", response.data);
+                // console.log("Marathon Added:", response.data);
                 toast.success('Marathon registered successfully!', {
                     position: "top-center",
                     autoClose: 5000,

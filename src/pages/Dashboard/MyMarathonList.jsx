@@ -30,10 +30,10 @@ const MyMarathonList = () => {
     const handleEditClick = (marathon) => {
         setSelectedMarathon(marathon);
         setShowEditModal(true);
-        console.log("Edit Modal Opened:", showEditModal);
+        // console.log("Edit Modal Opened:", showEditModal);
     };
     useEffect(() => {
-        console.log("Edit Modal State Changed:", showEditModal);
+        // console.log("Edit Modal State Changed:", showEditModal);
     }, [showEditModal]);
 
     const handleUpdateMarathon = (e) => {
@@ -63,7 +63,7 @@ const MyMarathonList = () => {
                 
                 setShowEditModal(false);
             })
-            .catch((error) => console.error("Error updating marathon:", error));
+            // .catch((error) => console.error("Error updating marathon:", error));
     };
     const handleDeleteClick = (marathon) => {
         Swal.fire({
@@ -78,7 +78,7 @@ const MyMarathonList = () => {
             if (result.isConfirmed) {
                 axios.delete(`http://localhost:5000/marathons/${marathon._id}`)
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                         if (res.data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -89,7 +89,7 @@ const MyMarathonList = () => {
                             setMarathons(prevMarathons => prevMarathons.filter(m => m._id !== marathon._id));
                         }
                     })
-                    .catch((error) => console.error("Error deleting marathon:", error));
+                    // .catch((error) => console.error("Error deleting marathon:", error));
             }
         });
     }

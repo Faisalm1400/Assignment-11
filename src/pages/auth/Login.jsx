@@ -22,7 +22,7 @@ const Login = () => {
                 const user = { email: email }
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
                 navigate(location?.state ? location.state : "/");
 
@@ -64,10 +64,10 @@ const Login = () => {
                 setUser(result.user);
                 navigate(location?.state ? location.state : "/");
                 const user = { email: result.user.email };
-                console.log(user)
+                // console.log(user)
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(res => {
-                        console.log(res.data)
+                        // console.log(res.data)
                     })
 
                 toast.success('User logged in successfully', {

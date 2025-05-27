@@ -13,7 +13,7 @@ const MarathonDetails = () => {
     useEffect(() => {
         axios.get(`http://localhost:5000/marathons/${id}`)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setMarathon(res.data);
 
                 const currentDate = new Date();

@@ -21,7 +21,7 @@ const Marathons = () => {
     if (loading) return <Loading />;
     return (
         <div className="container mx-auto p-4 space-y-4">
-            <h2 className="text-3xl">Marathons</h2>
+            <h2 className="text-3xl mb-9">Marathons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {marathons.map((marathon) => (
                     <div key={marathon._id} className="card bg-amber-100 text-black shadow-lg p-4 rounded-md">

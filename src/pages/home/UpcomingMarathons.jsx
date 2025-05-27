@@ -59,7 +59,7 @@ const upcomingMarathons = [
 
 const UpcomingMarathons = () => {
     return (
-        <div className="container mx-auto p-4 space-y-4">
+        <div className="container mx-auto p-4 space-y-8">
             <h2 className="text-3xl font-bold">Upcoming Marathons</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {upcomingMarathons.slice(0, 6).map((marathon) => (

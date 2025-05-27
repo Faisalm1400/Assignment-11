@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAIAqnT9_o9hkDzDw-xV0H6m_DTepCCwfU",
-  authDomain: "marathon-system.firebaseapp.com",
-  projectId: "marathon-system",
-  storageBucket: "marathon-system.firebasestorage.app",
-  messagingSenderId: "631395359733",
-  appId: "1:631395359733:web:2f0a12cf3de0111b049ebc"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

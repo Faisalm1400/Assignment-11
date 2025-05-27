@@ -12,7 +12,7 @@ const RegistrationForm = () => {
     const [marathon, setMarathon] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/marathons/${id}`)
+        axios.get(`https://marathon-server-sable.vercel.app/marathons/${id}`)
             .then((res) => setMarathon(res.data))
             .catch((error) => console.error("Error fetching marathon:", error));
     }, [id]);
@@ -31,7 +31,7 @@ const RegistrationForm = () => {
             additionalInfo: formData.get("additionalInfo"),
         };
 
-        axios.post("http://localhost:5000/registrations", registrationData)
+        axios.post("https://marathon-server-sable.vercel.app/registrations", registrationData)
             .then(() => {
                 toast.success('Registration Successful!', {
                     position: "top-left",

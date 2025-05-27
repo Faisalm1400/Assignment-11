@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContextProvider";
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://marathon-server-sable.vercel.app',
     withCredentials: true
 })
 

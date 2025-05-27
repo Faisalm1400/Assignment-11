@@ -20,7 +20,7 @@ const Login = () => {
                 setUser(result.user);
                 form.reset();
                 const user = { email: email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://marathon-server-sable.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         // console.log(res.data)
                     })
@@ -65,7 +65,7 @@ const Login = () => {
                 navigate(location?.state ? location.state : "/");
                 const user = { email: result.user.email };
                 // console.log(user)
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://marathon-server-sable.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => {
                         // console.log(res.data)
                     })

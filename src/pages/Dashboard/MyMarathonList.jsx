@@ -18,7 +18,7 @@ const MyMarathonList = () => {
         if (!email) return;
 
         setLoading(false);
-        axios.get(`http://localhost:5000/myMarathons/?email=${email}`, {
+        axios.get(`https://marathon-server-sable.vercel.app/myMarathons/?email=${email}`, {
             withCredentials: true
         })
             .then(res => {
@@ -46,7 +46,7 @@ const MyMarathonList = () => {
             description: formData.get("description"),
         };
 
-        axios.put(`http://localhost:5000/marathons/${selectedMarathon._id}`, updatedData)
+        axios.put(`https://marathon-server-sable.vercel.app/marathons/${selectedMarathon._id}`, updatedData)
             .then(() => {
                 toast.success('Marathon updated successfully!', {
                     position: "top-center",
@@ -76,7 +76,7 @@ const MyMarathonList = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/marathons/${marathon._id}`)
+                axios.delete(`https://marathon-server-sable.vercel.app/marathons/${marathon._id}`)
                     .then(res => {
                         // console.log(res.data)
                         if (res.data.deletedCount) {

@@ -31,7 +31,7 @@ const AddMarathons = () => {
             email: user?.email
         };
 
-        axios.post("http://localhost:5000/marathons", marathon)
+        axios.post("https://marathon-server-sable.vercel.app/marathons", marathon)
             .then((response) => {
                 // console.log("Marathon Added:", response.data);
                 toast.success('Marathon registered successfully!', {

@@ -10,7 +10,7 @@ const Marathons = () => {
     const [marathons, setMarathons] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:5000/marathons")
+        axios.get("https://marathon-server-sable.vercel.app/marathons")
             .then((response) => {
                 setMarathons(response.data);
                 setLoading(false);

@@ -11,7 +11,7 @@ const MarathonDetails = () => {
     const [registrationOpen, setRegistrationOpen] = useState(false);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/marathons/${id}`)
+        axios.get(`https://marathon-server-sable.vercel.app/marathons/${id}`)
             .then(res => {
                 // console.log(res.data)
                 setMarathon(res.data);

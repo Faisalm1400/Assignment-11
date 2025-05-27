@@ -12,7 +12,7 @@ const MyApply = () => {
 
     useEffect(() => {
         if (user?.email) {
-            axios.get(`http://localhost:5000/myApply?email=${user.email}`)
+            axios.get(`https://marathon-server-sable.vercel.app/myApply?email=${user.email}`)
                 .then(res => setAppliedMarathons(res.data))
                 // .catch(err => console.error("Error fetching data:", err));
         }

@@ -7,6 +7,12 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import AuthLayout from "../layout/AuthLayout";
 import AddMarathons from "../pages/Marathons/AddMarathons";
+import Marathons from "../pages/Marathons/Marathons";
+import PrivateRoute from "./PrivateRoute";
+import MarathonDetails from "../pages/Marathons/MarathonDetails";
+import RegistrationForm from "../pages/RegistrationForm";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import MyMarathonList from "../pages/Dashboard/MyMarathonList.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +26,39 @@ const router = createBrowserRouter([
             },
             {
                 path: "/addMarathons",
-                element: <AddMarathons />
+                element: <PrivateRoute>
+                    <AddMarathons />
+                </PrivateRoute>
+            },
+            {
+                path: "/marathons",
+                element: <PrivateRoute>
+                    <Marathons />
+                </PrivateRoute>
+            },
+            {
+                path: "/marathon/:id",
+                element: <PrivateRoute>
+                    <MarathonDetails />
+                </PrivateRoute>
+            },
+            {
+                path: "/registration/:id",
+                element: <PrivateRoute>
+                    <RegistrationForm />
+                </PrivateRoute>
+            },
+            {
+                path: "/dashboard",
+                element: <PrivateRoute>
+                    <Dashboard />
+                </PrivateRoute>
+            },
+            {
+                path: "/dashboard/myMarathons",
+                element: <PrivateRoute>
+                    <MyMarathonList />
+                </PrivateRoute>
             }
         ],
     },

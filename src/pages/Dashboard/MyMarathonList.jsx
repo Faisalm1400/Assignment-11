@@ -47,7 +47,6 @@ const MyMarathonList = () => {
             .then(() => {
                 alert("Marathon updated successfully!");
                 setShowEditModal(false);
-                window.location.reload();
             })
             .catch((error) => console.error("Error updating marathon:", error));
     };

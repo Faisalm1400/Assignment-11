@@ -13,6 +13,7 @@ import MarathonDetails from "../pages/Marathons/MarathonDetails";
 import RegistrationForm from "../pages/RegistrationForm";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import MyMarathonList from "../pages/Dashboard/MyMarathonList.jsx";
+import MyApply from "../pages/Dashboard/MyApply.jsx";
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,12 @@ const router = createBrowserRouter([
                 path: "/dashboard/myMarathons",
                 element: <PrivateRoute>
                     <MyMarathonList />
+                </PrivateRoute>
+            },
+            {
+                path: "/dashboard/myApply",
+                element: <PrivateRoute>
+                    <MyApply />
                 </PrivateRoute>
             }
         ],

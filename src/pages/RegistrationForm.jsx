@@ -30,7 +30,7 @@ const RegistrationForm = () => {
             additionalInfo: formData.get("additionalInfo"),
         };
 
-        axios.post("http://localhost:5000/registration", registrationData)
+        axios.post("http://localhost:5000/registrations", registrationData)
             .then(() => {
                 alert("Registration Successful!");
                 // navigate("/dashboard/my-apply");

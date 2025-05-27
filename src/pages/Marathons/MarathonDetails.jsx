@@ -25,7 +25,7 @@ const MarathonDetails = () => {
 
 
     const handleRegisterClick = () => {
-        navigate(`/registration/${id}`);
+        navigate(`/registrations/${id}`);
     };
 
     if (!marathon) return <p>Loading...</p>;

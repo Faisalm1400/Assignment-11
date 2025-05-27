@@ -1,9 +1,38 @@
-import React from 'react';
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContextProvider";
+import Loading from "../shared/Loading";
+
 
 const Marathons = () => {
+    const { loading, setLoading } = useContext(AuthContext)
+    const [marathons, setMarathons] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:5000/marathons")
+            .then((response) => {
+                setMarathons(response.data);
+                setLoading(false);
+            })
+            .catch((error) => console.error("Error fetching marathons:", error));
+    }, []);
+
+    if (loading) return <Loading />;
     return (
-        <div>
+        <div className="container mx-auto p-4 space-y-4">
             <h2 className="text-3xl">Marathons</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {marathons.map((marathon) => (
+                    <div key={marathon._id} className="card bg-amber-100 text-black shadow-lg p-4 rounded-md">
+                        <img src={marathon.image} alt={marathon.title} className="w-full h-40 object-cover rounded-md" />
+                        <h2 className="text-xl font-bold mt-4">{marathon.title}</h2>
+                        <p className="text-gray-600">{marathon.location}</p>
+                        <p className="text-sm">Registration: {new Date(marathon.startRegistrationDate).toLocaleDateString()} - {new Date(marathon.endRegistrationDate).toLocaleDateString()}</p>
+                        <Link to={`/marathon/${marathon._id}`} className="btn btn-primary mt-4 w-full">See Details</Link>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

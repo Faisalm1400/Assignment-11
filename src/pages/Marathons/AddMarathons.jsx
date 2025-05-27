@@ -1,41 +1,46 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { AuthContext } from '../../context/AuthContextProvider';
+import axios from "axios";
 
 const AddMarathons = () => {
     const [startRegDate, setStartRegDate] = useState(null);
     const [endRegDate, setEndRegDate] = useState(null);
     const [marathonStartDate, setMarathonStartDate] = useState(null);
+    const { user } = useContext(AuthContext);
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const form = e.target;
-        const title = form.title.value;
-        const location = form.location.value;
-        const startRegistrationDate = form.startRegistrationDate.value;
-        const endRegistrationDate = form.endRegistrationDate.value;
-        const marathonStartDate = form.marathonStartDate.value;
-        const distance = form.distance.value;
-        const image = form.image.value;
-        const description = form.description.value;
+        const formData = new FormData(e.target);
 
-        console.log(title, location, startRegistrationDate, endRegistrationDate,marathonStartDate,distance, image, description)
+        const marathon = {
+            title: formData.get("title"),
+            startRegistrationDate: startRegDate,
+            endRegistrationDate: endRegDate,
+            marathonStartDate: marathonStartDate,
+            location: formData.get("location"),
+            distance: formData.get("distance"),
+            description: formData.get("description"),
+            image: formData.get("image"),
+            createdAt: new Date(),
+            totalRegistrations: 0,
+            email: user?.email
+        };
 
-        // const marathon = {
-        //     title: form.title.value,
-        //     startRegistrationDate: startRegDate,
-        //     endRegistrationDate: endRegDate,
-        //     marathonStartDate: marathonStartDate,
-        //     location: form.location.value,
-        //     distance: form.distance.value,
-        //     description: form.description.value,
-        //     image: form.image.value,
-        //     createdAt: new Date(),
-        //     totalRegistrations: 0
-        // };
+        axios.post("http://localhost:5000/marathons", marathon)
+            .then((response) => {
+                console.log("Marathon Added:", response.data);
+                alert("Marathon registered successfully!");
+            })
+            .catch((error) => {
+                console.error("Error adding marathon:", error);
+                alert("Failed to register the marathon. Please try again.");
+            });
+        console.log("Marathon Data:", marathon);
 
-        // console.log("Marathon Data:", marathon);
         alert("Marathon registered successfully!");
     }
 
@@ -62,16 +67,16 @@ const AddMarathons = () => {
                     <div className="mb-4 md:mb-8 md:flex">
                         <div className="w-full md:w-1/2 mb-4 md:mb-0">
                             <label className="fieldset-label mb-2">Start Registration Date</label>
-                            <DatePicker name="startRegistrationDate" selected={startRegDate} onChange={(date) => setStartRegDate(date)} className="w-full input input-bordered" required />
+                            <DatePicker selected={startRegDate} onChange={(date) => setStartRegDate(date)} className="w-full input input-bordered" required />
                         </div>
                         <div className="w-full md:w-1/2 md:ml-4">
                             <label className="fieldset-label mb-2">End Registration Date</label>
-                            <DatePicker name="endRegistrationDate" selected={endRegDate} onChange={(date) => setEndRegDate(date)} className="w-full input input-bordered" required />
+                            <DatePicker selected={endRegDate} onChange={(date) => setEndRegDate(date)} className="w-full input input-bordered" required />
                         </div>
                     </div>
                     <div className="mb-4 md:mb-8">
                         <label className="fieldset-label mb-2">Marathon Start Date</label>
-                        <DatePicker name="marathonStartDate" selected={marathonStartDate} onChange={(date) => setMarathonStartDate(date)} className="w-full input input-bordered" required />
+                        <DatePicker selected={marathonStartDate} onChange={(date) => setMarathonStartDate(date)} className="w-full input input-bordered" required />
                     </div>
                 </fieldset>
 

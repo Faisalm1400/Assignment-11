@@ -14,6 +14,7 @@ import RegistrationForm from "../pages/RegistrationForm";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import MyMarathonList from "../pages/Dashboard/MyMarathonList.jsx";
 import MyApply from "../pages/Dashboard/MyApply.jsx";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
